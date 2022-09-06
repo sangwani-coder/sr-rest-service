@@ -8,11 +8,11 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>Rest-service-api</artifactId>
+	<groupId>tech.zyambo</groupId>
+	<artifactId>srapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Rest-service-api</name>
-	<description>Demo project for Spring Boot</description>
+	<name>srapi</name>
+	<description>Smart Recipe API</description>
 	<properties>
 		<java.version>18</java.version>
 	</properties>
