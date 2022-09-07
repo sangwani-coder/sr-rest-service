@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tech.zyambo.srapi.FileStorage;
 import tech.zyambo.srapi.Vegan;
 // import tech.zyambo.srapi.Recipe;
 
@@ -28,6 +29,9 @@ public class VeganController {
         resUrls.put("dinner", "/srapi/v1/vegan/dinner");
         
         HashMap<String, HashMap<String, String>> res = new HashMap<>();
+
+        FileStorage myObj = new FileStorage();
+        myObj.readFile();
         
         res.put("result:", resUrls);
     
@@ -66,6 +70,13 @@ public class VeganController {
         HashMap<String, Vegan> recipe = new HashMap<>();
 
         recipe.put(name, myRecipe);
+
+        FileStorage fileWriter = new FileStorage();
+
+        fileWriter.createFile();
+        fileWriter.writeToFile("My great recipe");
+        fileWriter.writeToFile(name);
+        fileWriter.writeToFile("Potato salad");
 
         return recipe;
 
