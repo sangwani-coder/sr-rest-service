@@ -67,7 +67,6 @@ public class VeganController {
 
         recipe.put(name, myRecipe);
 
-
         return recipe;
 
     }

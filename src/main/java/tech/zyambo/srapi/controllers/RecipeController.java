@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tech.zyambo.srapi.Recipe;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +17,7 @@ import java.util.HashMap;
 public class RecipeController {
 
      @GetMapping("/")
+     @ResponseStatus(HttpStatus.ACCEPTED)
     public HashMap<String, HashMap<String, String>> resources(){
 
         HashMap<String, String> resUrls = new HashMap<>();
@@ -33,6 +36,7 @@ public class RecipeController {
     }
 
     @GetMapping("/recipes")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ArrayList<Recipe> getData(){
         
         ArrayList<Recipe> arr = new ArrayList<>();

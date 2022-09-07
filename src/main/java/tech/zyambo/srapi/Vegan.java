@@ -9,9 +9,9 @@ public class Vegan extends Recipe{
         this.recipeGroup = "Vegan";
     }
 
-    // public String getRecipeName(){
-    //     return recipeName;
-    // }
+    public String getRecipeName(){
+        return recipeName;
+    }
 
     public String getRecipeGroup(){
         return recipeGroup;
