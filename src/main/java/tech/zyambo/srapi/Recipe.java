@@ -1,29 +1,28 @@
 package tech.zyambo.srapi;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class Recipe {
-    public String name;
     private final UUID id;
     public String mealTime;
-    private LocalDateTime createdAt;
-    private LocalDateTime editedAt;
+    private final LocalDate createdAt;
+    private LocalDate editedAt;
     public String creator;
     public String country;
     public HashMap<String, Integer> prep;
     public ArrayList<String> ingredients;
     public ArrayList<String> description;
     public ArrayList<String> nutrition;
-       
+    
 
     // Recipe class constructor
     public Recipe(){
         this.id = UUID.randomUUID();
-        this.createdAt = LocalDateTime.now();
-        this.editedAt = LocalDateTime.now();
+        this.createdAt = LocalDate.now();
+        this.editedAt = LocalDate.now();
     }
 
     // Getter methods
@@ -31,11 +30,11 @@ public class Recipe {
         return id;
     }
 
-    public LocalDateTime getCreatedAt(){
+    public LocalDate getcreatedAt(){
         return createdAt;
     }
 
-    public LocalDateTime getEditedAt(){
+    public LocalDate geteditedAt(){
         return editedAt;
     }
 

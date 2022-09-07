@@ -35,6 +35,16 @@ public class RecipeController {
         return res;
     }
 
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public HashMap<String, Object> get(){
+        FileStorage myObj = new FileStorage();
+        HashMap<String, Object> d = new HashMap<>();
+        d = myObj.readFile();
+        
+        return d;
+   }
+
     public void createRecipe(
         @RequestBody Recipe data,
         @RequestParam String name,
@@ -44,8 +54,8 @@ public class RecipeController {
 
         try {
             // Convert datetime and uuid objects to string
-            String created =  data.getCreatedAt().toString();
-            String edited =  data.getEditedAt().toString();
+            String created =  data.getcreatedAt().toString();
+            String edited =  data.geteditedAt().toString();
             String recipeID = data.getId().toString();
 
             FileStorage fileWriter = new FileStorage();
