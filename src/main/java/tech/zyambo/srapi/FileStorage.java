@@ -1,17 +1,19 @@
 package tech.zyambo.srapi;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
 
 public class FileStorage {
     public void createFile(){
         try {
-            File myDB = new File("db.txt");
+            File myDB = new File("db.json");
             if (myDB.createNewFile()) {
                 System.out.println("File created successfully");
             } else {
@@ -23,11 +25,19 @@ public class FileStorage {
         }
     }
 
-    public void writeToFile(String recipe){
+    public void writeToFile(String name, HashMap<String, Object> recipe){
         try {
-            FileWriter myWriter = new FileWriter("db.txt", true);
+            FileWriter myWriter = new FileWriter("db.json", true);
             BufferedWriter br = new BufferedWriter(myWriter);
-            br.write(recipe + "\r\n");
+
+            HashMap<String, Object> data = new HashMap<>();
+
+            data.put(String.format("%s", name), recipe);
+            
+            Gson gson = new Gson();
+            String rData = gson.toJson(data);
+
+            br.write(rData + "\r\n");
             br.close();
             myWriter.close();
             System.out.println("Successfully wrote to file.");
@@ -39,7 +49,7 @@ public class FileStorage {
 
     public void readFile(){
         try {
-            File myObj = new File("db.txt");
+            File myObj = new File("db.json");
             Scanner myReader = new Scanner(myObj);
 
             while (myReader.hasNext()) {

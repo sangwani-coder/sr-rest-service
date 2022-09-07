@@ -13,6 +13,10 @@ public class Omnivore extends Recipe{
         return recipeName;
     }
 
+    public void setRecipeName(String name){
+        this.recipeName = name;
+    }
+
     public String getRecipeGroup(){
         return recipeGroup;
     }

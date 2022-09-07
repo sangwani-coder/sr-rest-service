@@ -6,17 +6,18 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class Recipe {
+    public String name;
     private final UUID id;
     public String mealTime;
-    private final LocalDate createdAt;
-    private LocalDate editedAt;
+    public LocalDate createdAt;
+    public LocalDate editedAt;
     public String creator;
     public String country;
     public HashMap<String, Integer> prep;
     public ArrayList<String> ingredients;
     public ArrayList<String> description;
     public ArrayList<String> nutrition;
-    
+       
 
     // Recipe class constructor
     public Recipe(){

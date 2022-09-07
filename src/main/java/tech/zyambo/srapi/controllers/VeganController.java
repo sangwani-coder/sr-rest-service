@@ -3,9 +3,12 @@ package tech.zyambo.srapi.controllers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.google.gson.Gson;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 
 import tech.zyambo.srapi.FileStorage;
 import tech.zyambo.srapi.Vegan;
@@ -13,6 +16,7 @@ import tech.zyambo.srapi.Vegan;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 @RestController
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class VeganController {
 
     @GetMapping("/vegan")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public HashMap<String, HashMap<String, String>> resources(){
 
         HashMap<String, String> resUrls = new HashMap<>();
@@ -39,6 +44,7 @@ public class VeganController {
     }
     
     @PostMapping("/vegan")
+    @ResponseStatus(HttpStatus.CREATED)
     public HashMap<String, Vegan> vegan(@RequestParam(value = "name", defaultValue = "none") String name){
         Vegan myRecipe = new Vegan(name);
         myRecipe.addData("Dinner", "Zyambo", "Zambia");
@@ -73,13 +79,14 @@ public class VeganController {
 
         FileStorage fileWriter = new FileStorage();
 
+        Gson gson = new Gson();
+
+        String jsonString = gson.toJson(nutrients);
+        System.out.println(jsonString);
+
         fileWriter.createFile();
-        fileWriter.writeToFile("My great recipe");
-        fileWriter.writeToFile(name);
-        fileWriter.writeToFile("Potato salad");
+        // fileWriter.writeToFile(recipe);
 
         return recipe;
-
     }
-
 }

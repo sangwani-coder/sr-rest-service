@@ -1,0 +1,9 @@
+{"creator":"Zyambo","mealTime":"lunch","group":"omnivore"}
+{"country":"Zambia","creator":"Zyambo","nutrition":["vitamins","Energy"],"mealTime":"lunch","description":["peel potatos","fry eggs"],"prep":{"cook":10,"prep":10},"ingredients":["potato","eggs"],"group":"omnivore"}
+{Potato salad={"country":"Zambia","creator":"Zyambo","nutrition":["vitamins","Energy"],"mealTime":"lunch","description":["peel potatos","fry eggs"],"prep":{"cook":10,"prep":10},"ingredients":["potato","eggs"],"group":"omnivore"}}
+{"Potato salad":"{\"country\":\"Zambia\",\"creator\":\"Zyambo\",\"nutrition\":[\"vitamins\",\"Energy\"],\"mealTime\":\"lunch\",\"description\":[\"peel potatos\",\"fry eggs\"],\"prep\":{\"cook\":10,\"prep\":10},\"ingredients\":[\"potato\",\"eggs\"],\"group\":\"omnivore\"}"}
+{"Potato salad":{"country":"Zambia","creator":"Zyambo","nutrition":["vitamins","Energy"],"mealTime":"lunch","description":["peel potatos","fry eggs"],"prep":{"cook":10,"prep":10},"ingredients":["potato","eggs"],"group":"omnivore"}}
+{"Potato salad":{"country":"Zambia","creator":"Zyambo","nutrition":["vitamins","Energy"],"mealTime":"lunch","description":["peel potatos","fry eggs"],"prep":{"cook":10,"prep":10},"ingredients":["potato","eggs"],"group":"omnivore"}}
+{"Potato salad":{"country":"Zambia","creator":"Zyambo","nutrition":["vitamins","Energy"],"mealTime":"lunch","description":["peel potatos","fry eggs"],"prep":{"cook":10,"prep":10},"ingredients":["potato","eggs"],"group":"omnivore"}}
+{"Potato salad":{"country":"Zambia","creator":"Zyambo","nutrition":["vitamins","Energy"],"mealTime":"lunch","description":["peel potatos","fry eggs"],"prep":{"cook":10,"prep":10},"ingredients":["potato","eggs"],"group":"omnivore"}}
+{"Potato salad":{"creator":"Zyambo","nutrition":["vitamins","Energy"],"mealTime":"lunch","description":["peel potatos","fry eggs"],"prep":{"cook":10,"prep":10},"ingredients":["potato","eggs"],"group":"omnivore"}}
