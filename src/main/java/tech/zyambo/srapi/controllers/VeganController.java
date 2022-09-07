@@ -22,14 +22,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class VeganController {
 
     @GetMapping("/vegan")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public HashMap<String, HashMap<String, String>> resources(){
 
         HashMap<String, String> resUrls = new HashMap<>();
         // add key value pair (dishGroup, URL)
-        resUrls.put("breakfast", "/srapi/v1/vegan/breakfast");
-        resUrls.put("lunch", "/srapi/v1/vegan/lunch");
-        resUrls.put("dinner", "/srapi/v1/vegan/dinner");
+        resUrls.put("breakfast", "/srapi/v1/recipes/vegan/bf");
+        resUrls.put("lunch", "/srapi/v1/recipes/vegan/lh");
+        resUrls.put("dinner", "/srapi/v1/ecipes/vegan/dr");
         
         HashMap<String, HashMap<String, String>> res = new HashMap<>();
 
