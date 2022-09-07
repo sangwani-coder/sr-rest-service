@@ -1,30 +1,29 @@
 package tech.zyambo.srapi.controllers;
 
+import java.util.HashMap;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tech.zyambo.srapi.Recipe;
+import tech.zyambo.srapi.Omnivore;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 @RestController
 @RequestMapping(path="/srapi/v1", produces="application/json")
-public class RecipeController {
-
-     @GetMapping("/")
+public class OmnivoreController {
+    
+    @GetMapping("/omnivore")
     public HashMap<String, HashMap<String, String>> resources(){
 
         HashMap<String, String> resUrls = new HashMap<>();
         // add key value pair (dishGroup, URL)
-        resUrls.put("omnivore", "/srapi/v1/omnivore");
-        resUrls.put("vegan", "/srapi/v1/vegan");
-        resUrls.put("vegetarian", "/srapi/v1/vegetarian");
-        resUrls.put("recipes", "/srapi/v1/recipes");
+        resUrls.put("breakfast", "/srapi/v1/omnivore/breakfast");
+        resUrls.put("lunch", "/srapi/v1/omnivore/lunch");
+        resUrls.put("dinner", "/srapi/v1/omnivore/dinner");
         
-
         HashMap<String, HashMap<String, String>> res = new HashMap<>();
         
         res.put("result:", resUrls);
@@ -32,18 +31,12 @@ public class RecipeController {
         return res;
     }
 
-    @GetMapping("/recipes")
-    public ArrayList<Recipe> getData(){
-        
-        ArrayList<Recipe> arr = new ArrayList<>();
+    @PostMapping("/omnivore")
+    public Omnivore omnivore(){
+        Omnivore myRecipe = new Omnivore("Potato salad");
 
-        Recipe recipeOne = new Recipe();
-        Recipe recipeTwo = new Recipe();
+        return myRecipe;
 
-        arr.add(recipeOne);
-        arr.add(recipeTwo);
-
-        return arr;
     }
 
 }
