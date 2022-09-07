@@ -4,18 +4,24 @@ import java.util.HashMap;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tech.zyambo.srapi.Vegetarian;
+import tech.zyambo.srapi.Recipe;
+import com.google.gson.Gson;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.http.HttpStatus;
 
 
 @RestController
-@RequestMapping(path="/srapi/v1", produces="application/json")
+@RequestMapping(path="/srapi/v1/recipes", produces="application/json")
 public class VegetarianController {
     
     @GetMapping("/vegetarian")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public HashMap<String, HashMap<String, String>> resources(){
 
         HashMap<String, String> resUrls = new HashMap<>();
@@ -32,10 +38,21 @@ public class VegetarianController {
     }
     
     @PostMapping("/vegetarian")
-    public Vegetarian vegetarian(){
-        Vegetarian myRecipe = new Vegetarian("Potato salad");
+    @ResponseStatus(HttpStatus.CREATED)
+    public String createOmnRecipe(
+        @RequestBody Recipe data,
+        @RequestParam String name){
+        RecipeController myObj = new RecipeController();
+        myObj.createRecipe(data, name, "vegetarian");
 
-        return myRecipe;
+        // Status message
+        String Jmsg;
+        HashMap<String, String> msg = new HashMap<>();
+        msg.put("message", "ok");
+        Gson gson = new Gson();
+        Jmsg = gson.toJson(msg);
+
+        return Jmsg;
 
     }
 }
