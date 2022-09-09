@@ -17,9 +17,9 @@ public class FileStorage {
     private String msg;
     public String createFile(String path){
         try {
-            File myDB = new File(String.format("%s", path));
+            File myDB = new File(path);
             if (myDB.createNewFile()) {
-                msg = String.format("File %s.json created successfully", path);
+                msg = String.format("File %s created successfully", path);
             } else {
                 msg = String.format("File %s already exists", path);
             }

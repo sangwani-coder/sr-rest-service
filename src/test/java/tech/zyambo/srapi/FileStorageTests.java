@@ -1,11 +1,13 @@
 //Tests the FileStorage class
 package tech.zyambo.srapi;
 
-// import org.junit.Rule;
-// import org.junit.rules.TemporaryFolder;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 // import java.io.IOException;
@@ -13,21 +15,35 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
 public class FileStorageTests {
-    // Create a new temp folder
+    // Create variables
     private final FileStorage fileWriter = new FileStorage();
+    private String path = "testDB.json";
+    private String recipe = "MyFavoriteRecipe";
+    private HashMap<String, Object> recipeData = new HashMap<>();
 
     @Test
-    void testCreateNewFile(){
+    void testCreateNewFileNoneExisting(){
         // test whether the file has been created
-        assertEquals("File test.json created successfully", this.fileWriter.createFile("test"));
+        Path file = Paths.get(this.path);
+        boolean exists = Files.exists(file);
+        assumeFalse(exists);
+
+        assertEquals("File test.json created successfully", this.fileWriter.createFile(this.path));
+    }
+
+    @Test
+    void testCreateNewFileExisting(){
+        // test whether the file has been created
+        Path file = Paths.get(this.path);
+        boolean exists = Files.exists(file);
+        assumeTrue(exists);
+        
+        assertEquals("File test.json already exists", this.fileWriter.createFile(this.path));
     }
 
     @Test
     void testWriteToFile(){
-        String path = "testDB.json";
-        String recipe = "MyFavoriteRecipe";
-        HashMap<String, Object> recipeData = new HashMap<>();
-
+        
         Recipe data = new Recipe();
 
         try {
@@ -48,8 +64,8 @@ public class FileStorageTests {
             recipeData.put("created", created);
             recipeData.put("edited", edited);
 
-            String response = fileWriter.writeToFile(path, recipe, recipeData);
-            assertEquals(recipe, response);
+            String response = fileWriter.writeToFile(this.path, this.recipe, this.recipeData);
+            assertEquals(this.recipe, response);
            
         } catch(Exception e){
             e.printStackTrace();
