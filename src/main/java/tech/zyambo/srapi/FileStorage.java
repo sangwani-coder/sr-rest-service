@@ -17,7 +17,7 @@ public class FileStorage {
     private String msg;
     public String createFile(String path){
         try {
-            File myDB = new File(String.format("%s" + ".json", path));
+            File myDB = new File(String.format("%s", path));
             if (myDB.createNewFile()) {
                 msg = String.format("File %s.json created successfully", path);
             } else {

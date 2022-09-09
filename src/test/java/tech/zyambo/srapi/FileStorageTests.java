@@ -6,29 +6,28 @@ package tech.zyambo.srapi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 
 // import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.AfterAll;
 
 public class FileStorageTests {
-
     // Create a new temp folder
     private final FileStorage fileWriter = new FileStorage();
-    private String path = "testDB";
-    private String recipe = "MyFavoriteRecipe";
-    HashMap<String, Object> recipeData = new HashMap<>();
 
-    @BeforeAll
-    public void setUp() throws IOException{
-        this.fileWriter.createFile(path);
+    @Test
+    void testCreateNewFile(){
+        // test whether the file has been created
+        assertEquals("File test.json created successfully", this.fileWriter.createFile("test"));
+    }
+
+    @Test
+    void testWriteToFile(){
+        String path = "testDB.json";
+        String recipe = "MyFavoriteRecipe";
+        HashMap<String, Object> recipeData = new HashMap<>();
+
         Recipe data = new Recipe();
 
         try {
@@ -48,33 +47,12 @@ public class FileStorageTests {
             recipeData.put("nutrition", data.nutrition);
             recipeData.put("created", created);
             recipeData.put("edited", edited);
+
+            String response = fileWriter.writeToFile(path, recipe, recipeData);
+            assertEquals(recipe, response);
            
         } catch(Exception e){
             e.printStackTrace();
-        }
-    }
-
-    @Test
-    void testCreateNewFile(){
-        // test whether the file has been created
-        assertEquals("File test.json already exists", this.fileWriter.createFile("test"));
-    }
-
-    @Test
-    void testWriteToFile(){
-        String response = fileWriter.writeToFile(this.path, this.recipe, this.recipeData);
-            assertEquals(this.recipe, response);        
-    }
-
-    @AfterAll
-    public void tearDown() throws Exception {
-        try {
-            // make a connection to the file
-            Path file = Paths.get(path);
-            Files.delete(file);
-        
-        } catch (Exception e) {
-            e.getStackTrace();
         }
     }
 }
