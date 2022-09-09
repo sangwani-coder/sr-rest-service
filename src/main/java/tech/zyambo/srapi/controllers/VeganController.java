@@ -29,7 +29,7 @@ public class VeganController {
         // add key value pair (dishGroup, URL)
         resUrls.put("breakfast", "/srapi/v1/recipes/vegan/bf");
         resUrls.put("lunch", "/srapi/v1/recipes/vegan/lh");
-        resUrls.put("dinner", "/srapi/v1/ecipes/vegan/dr");
+        resUrls.put("dinner", "/srapi/v1/recipes/vegan/dr");
         
         HashMap<String, HashMap<String, String>> res = new HashMap<>();
 

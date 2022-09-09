@@ -8,30 +8,32 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
 
 public class FileStorage {
-    public void createFile(){
+    private String msg;
+    public String createFile(String path){
         try {
-            File myDB = new File("db.json");
+            File myDB = new File(String.format("%s" + ".json", path));
             if (myDB.createNewFile()) {
-                System.out.println("File created successfully");
+                msg = String.format("File %s.json created successfully", path);
             } else {
-                System.out.println("File already exists");
+                msg = String.format("File %s already exists", path);
             }
         } catch (IOException e) {
-            System.out.println("An error occured.");
+            msg = "An error occured.";
             e.printStackTrace();
         }
+        return this.msg;
     }
 
-    public void writeToFile(String name, HashMap<String, Object> recipe){
+    public String writeToFile(String path, String name, HashMap<String, Object> recipe){
         try {
-            FileWriter myWriter = new FileWriter("db.json", true);
+            createFile(path);
+            FileWriter myWriter = new FileWriter(path, true);
             BufferedWriter br = new BufferedWriter(myWriter);
 
             HashMap<String, Object> data = new HashMap<>();
@@ -40,7 +42,7 @@ public class FileStorage {
             
             // Gson gson = new Gson();
             // String rData = gson.toJson(data);
-            long count = countLines();
+            long count = countLines(path);
 
             HashMap<Object, Object> jData = new HashMap<>();
             
@@ -52,19 +54,21 @@ public class FileStorage {
             br.write(jsonData + "\r\n");
             br.close();
             myWriter.close();
-            System.out.println("Successfully wrote to file.");
         } catch (Exception e) {
-            System.out.println("An error occured.");
+            name = "an error occured.";
             e.printStackTrace();
         }
+        return name;
     }
 
-    public HashMap<String, Object> readFile(){
+    public String readFile(){
         long count = 0;
+        String jData;
 
         HashMap<Object, Object> recipes = new HashMap<>();
         HashMap<String, Object> myData = new HashMap<>();
-        
+        Gson gson = new Gson();
+                
         try {
             File myObj = new File("db.json");
             Scanner myReader = new Scanner(myObj);
@@ -79,17 +83,17 @@ public class FileStorage {
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("No file found");
-            createFile();
+            createFile("db");
         }
-
-        return myData;
+        jData = gson.toJson(myData);
+        return jData;
     }
 
-    public long countLines(){
+    public long countLines(String path){
         long count = 0;
         try {
             // make a connection to the file
-            Path file = Paths.get("db.json");
+            Path file = Paths.get(path);
     
             // read all lines of the file
             count = Files.lines(file).count();

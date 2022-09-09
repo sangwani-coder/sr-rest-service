@@ -8,7 +8,7 @@ public class SrapiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SrapiApplication.class, args);
-		System.out.println("srapi server running...");
+		System.out.println("srapi server running on localhost:8080...");
 	}
 
 }

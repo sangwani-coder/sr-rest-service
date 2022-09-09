@@ -37,12 +37,9 @@ public class RecipeController {
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public HashMap<String, Object> get(){
+    public String get(){
         FileStorage myObj = new FileStorage();
-        HashMap<String, Object> d = new HashMap<>();
-        d = myObj.readFile();
-        
-        return d;
+        return myObj.readFile();
    }
 
     public void createRecipe(
@@ -59,7 +56,7 @@ public class RecipeController {
             String recipeID = data.getId().toString();
 
             FileStorage fileWriter = new FileStorage();
-            fileWriter.createFile();
+            fileWriter.createFile("db");
 
             recipeData.put("id", recipeID);
             recipeData.put("creator", data.creator);
@@ -72,12 +69,9 @@ public class RecipeController {
             recipeData.put("nutrition", data.nutrition);
             recipeData.put("created", created);
             recipeData.put("edited", edited);
-
-            fileWriter.writeToFile(name, recipeData);
            
         } catch(Exception e){
             e.printStackTrace();
         }
     }
-
 }

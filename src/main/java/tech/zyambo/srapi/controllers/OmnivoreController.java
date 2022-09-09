@@ -28,7 +28,7 @@ public class OmnivoreController {
         // add key value pair (dishGroup, URL)
         resUrls.put("breakfast", "/srapi/v1/recipes/omnivore/bf");
         resUrls.put("lunch", "/srapi/v1/recipes/omnivore/lh");
-        resUrls.put("dinner", "/srapi/v1/recieps/omnivore/dr");
+        resUrls.put("dinner", "/srapi/v1/recipes/omnivore/dr");
         
         HashMap<String, HashMap<String, String>> res = new HashMap<>();
         
