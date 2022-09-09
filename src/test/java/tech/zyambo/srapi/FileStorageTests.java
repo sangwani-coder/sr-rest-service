@@ -10,8 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
-// import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 public class FileStorageTests {
@@ -28,7 +26,7 @@ public class FileStorageTests {
         boolean exists = Files.exists(file);
         assumeFalse(exists);
 
-        assertEquals("File test.json created successfully", this.fileWriter.createFile(this.path));
+        assertEquals(String.format("File %s created successfully", file), this.fileWriter.createFile(this.path));
     }
 
     @Test
@@ -38,7 +36,7 @@ public class FileStorageTests {
         boolean exists = Files.exists(file);
         assumeTrue(exists);
         
-        assertEquals("File test.json already exists", this.fileWriter.createFile(this.path));
+        assertEquals(String.format("File %s already exists", file), this.fileWriter.createFile(this.path));
     }
 
     @Test

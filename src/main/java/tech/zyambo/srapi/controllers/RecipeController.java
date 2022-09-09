@@ -39,7 +39,7 @@ public class RecipeController {
     @ResponseStatus(HttpStatus.OK)
     public String get(){
         FileStorage myObj = new FileStorage();
-        return myObj.readFile();
+        return myObj.readFile("fileStorage.json");
    }
 
     public void createRecipe(

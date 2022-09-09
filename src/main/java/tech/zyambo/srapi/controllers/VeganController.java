@@ -34,7 +34,7 @@ public class VeganController {
         HashMap<String, HashMap<String, String>> res = new HashMap<>();
 
         FileStorage myObj = new FileStorage();
-        myObj.readFile();
+        myObj.readFile("fileStorage.json");
         
         res.put("result:", resUrls);
     

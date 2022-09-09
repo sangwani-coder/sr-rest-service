@@ -61,7 +61,7 @@ public class FileStorage {
         return name;
     }
 
-    public String readFile(){
+    public String readFile(String path){
         long count = 0;
         String jData;
 
@@ -70,13 +70,12 @@ public class FileStorage {
         Gson gson = new Gson();
                 
         try {
-            File myObj = new File("db.json");
+            File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
             
             while (myReader.hasNext()) {
                 String data = myReader.nextLine();
                 recipes.put(++count, data);
-                // System.out.println(recipes);
             }
             myData.put("total recipes", count);
             myData.put("recipes", recipes);
