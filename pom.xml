@@ -40,20 +40,43 @@
 			<scope>runtime</scope>  
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
-			<version>1.0.2.Final</version>
+			<version>1.0.0.Final</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.2.3.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.1.3.Final</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.11.7.RELEASE</version>
+			<!-- <version>1.11.7.RELEASE</version> -->
+		</dependency>
+		<dependency>  
+			<groupId>org.springframework.boot</groupId>  
+			<artifactId>spring-boot-starter-data-jpa</artifactId>  
+			<version>2.2.2.RELEASE</version>  
 		</dependency>
 				
 	</dependencies>
 
 	<build>
+	  <plugins>
 	  <plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-surefire-plugin</artifactId>
@@ -64,7 +87,6 @@
 				<forkMode>once</forkMode>
 			</configuration>
 		</plugin> 
-		<plugins>
 			<plugin>
 			
 				<groupId>org.springframework.boot</groupId>

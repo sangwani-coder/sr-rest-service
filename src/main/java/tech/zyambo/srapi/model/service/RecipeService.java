@@ -1,17 +1,17 @@
-package tech.zyambo.srapi.service;
+package tech.zyambo.srapi.model.service;
 
 import java.util.List;
 import java.util.ArrayList;  
-import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import tech.zyambo.srapi.model.Recipe;
-import tech.zyambo.srapi.repository.RecipeRepository;
-
+import tech.zyambo.srapi.model.repository.RecipeRepository;
 
 @Service 
 public class RecipeService {
-    @Autowired
+    @Autowired(required = false)
     RecipeRepository recipeRepository;
     
     public List<Recipe> getAllRecipes() {

@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tech.zyambo.srapi.model.Recipe;
-import tech.zyambo.srapi.service.RecipeService;
+import tech.zyambo.srapi.model.service.RecipeService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
+// import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@Component
+// @Component
 @RequestMapping(path="/srapi/v1", produces="application/json")
 public class RecipeController {
 

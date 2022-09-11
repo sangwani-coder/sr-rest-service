@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.persistence.Column;  
-import javax.persistence.Entity;  
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;  
 import javax.persistence.Table;
 
@@ -13,7 +15,7 @@ import javax.persistence.Table;
 @Table
 public class Recipe {
     @Id
-    @Column
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     @Column
     public String mealTime;
@@ -69,9 +71,9 @@ public class Recipe {
     }
 
     // SETTERS
-    public void setId(int id){
-        this.id  = id;
-    }
+    // public void setId(int id){
+    //     this.id  = id;
+    // }
     public void setMealTime(String mealTime){
         this.mealTime = mealTime;
     }
