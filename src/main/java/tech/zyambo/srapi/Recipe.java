@@ -1,46 +1,38 @@
 package tech.zyambo.srapi;
 
 import java.time.LocalDateTime;
-// import java.util.ArrayList;
-// import java.util.HashMap;
 import java.util.Objects;
 
-// import javax.persistence.Column;  
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;  
-// import javax.persistence.Table;
-
-// import org.springframework.context.annotation.Primary;
 
 @Entity
-// @Primary
-// @Table
 public class Recipe {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-
     private String name;
-    
-    public String mealTime;
-    
+    private String description;
     private LocalDateTime createdAt;
-    
     private LocalDateTime editedAt;
-    
-    public String creator;
-    
-    public String country;
-    
-    // public HashMap<String, Integer> prep;
-    
-    // public ArrayList<String> ingredients;
-    
-    // public ArrayList<String> description;
-    
-    // public ArrayList<String> nutrition;
+    private String creator;
+    private String country;
+    private String prep;
+    private String cook;
+    private String servings;
+
+    // no-arg constructor
+    Recipe() {};
+
+    // arg constructor
+    public Recipe(String name, String creator) {
+        this.name = name;
+        this.creator = creator;
+        this.createdAt = LocalDateTime.now();
+        this.editedAt = LocalDateTime.now();
+    }
     
     // GETTERS
     public Integer getId(){
@@ -51,8 +43,8 @@ public class Recipe {
         return name;
     }
 
-    public String getMealTime(){
-        return mealTime;
+    public String getDescription(){
+        return description;
     }
     public LocalDateTime getcreatedAt(){
         return createdAt;
@@ -63,24 +55,21 @@ public class Recipe {
     public String getCreator(){
         return creator;
     }
-    public String getCounty(){
+    public String getCountry(){
         return country;
     }
 
-    // public HashMap<String, Integer> getPrep(){
-    //     return prep;
-    // }
+    public String getPrep(){
+        return prep;
+    }
 
-    // public ArrayList<String> getIngredients(){
-    //     return ingredients;
-    // }
-    // public ArrayList<String> getDescription(){
-    //     return description;
-    // }
-    // public ArrayList<String> getNutrintion(){
-    //     return nutrition;
-    // }
-
+    public String getCook(){
+        return cook;
+    }
+    public String getServings(){
+        return servings;
+    }
+    
     // SETTERS
     public void setId(Integer id){
         this.id  = id;
@@ -88,35 +77,32 @@ public class Recipe {
     public void setName(String name){
         this.name = name;
     }
-    public void setMealTime(String mealTime){
-        this.mealTime = mealTime;
+    public void setDescription(String description){
+        this.description = description;
     }
     public void setcreatedAt(){
         this.createdAt = LocalDateTime.now();
     }
     public void seteditedAt(LocalDateTime edited){
-        this.editedAt = edited;
+        this.editedAt = LocalDateTime.now();
     }
     public void setCreator(String creator){
         this.creator = creator;
     }
-    public void setCounty(String country){
+    public void setCountry(String country){
         this.country = country;
     }
 
-    // public void getPrep(HashMap<String, Integer> prep){
-    //     this.prep = prep;
-    // }
-    // public void getIngredients(ArrayList<String> ingr){
-    //     this.ingredients = ingr;
-    // }
-    // public void getDescription(ArrayList<String> desc){
-    //     this.description = desc;
-    // }
-    // public void getNutrintion(ArrayList<String> nutr){
-    //     this.nutrition = nutr;
-    // }   
-
+    public void setPrep(String prep){
+        this.prep = prep;
+    }
+    public void setCook(String cook){
+        this.cook = cook;
+    }
+    public void setServings(String servings){
+        this.servings = servings;
+    }
+    
     @Override
     public boolean equals(Object o) {
   
