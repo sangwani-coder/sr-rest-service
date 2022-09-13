@@ -30,10 +30,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.qos.logback.core.joran.action.NewRuleAction;
 
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.CollectionModel;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+import java.util.stream.Collectors;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -41,25 +47,25 @@ import java.util.List;
 public class RecipeController {
 
     private final RecipeRepository repository;
+    
+    private final RecipeModelAssembler assembler;
 
-    RecipeController(RecipeRepository repository) {
+    RecipeController(RecipeRepository repository, RecipeModelAssembler assembler) {
+
         this.repository = repository;
+        this.assembler = assembler;
     }
-
-    // Base URL
-    @GetMapping("")
-    @ResponseStatus(HttpStatus.OK)
-    ArrayList<String> base(){
-    ArrayList<String> endpoints = new ArrayList<>();
-    endpoints.add("Resources");
-    return endpoints; 
-}
 
     @GetMapping("/recipes")
     @ResponseStatus(HttpStatus.OK)
-    List<Recipe> all() {
-        return repository.findAll();
-    }
+    CollectionModel<EntityModel<Recipe>> all() {
+
+        List<EntityModel<Recipe>> recipes = repository.findAll().stream() //
+            .map(assembler::toModel) //
+            .collect(Collectors.toList());
+      
+        return CollectionModel.of(recipes, linkTo(methodOn(RecipeController.class).all()).withSelfRel());
+      }
 
     @PostMapping("/recipes")
     @ResponseStatus(HttpStatus.CREATED)
@@ -68,10 +74,12 @@ public class RecipeController {
     }
     
     @GetMapping("/recipes/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    Recipe one(@PathVariable Integer id) {
-        return repository.findById(id)
+    EntityModel<Recipe> one(@PathVariable Integer id) {
+
+    Recipe recipe = repository.findById(id) //
         .orElseThrow(() -> new RecipeNotFoundException(id));
+        
+        return assembler.toModel(recipe);
     }
 
     @PutMapping("/recipes/{id}")
