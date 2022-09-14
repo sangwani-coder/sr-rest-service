@@ -1,22 +1,3 @@
-/* 
- * ## CLASS
- * RecipeController - @RestController class that 
- *      indicates that the data returned by each method will 
- *      be written straight into the response body instead of rendering a template.
- * 
- * ### ROUTES and METHODS
- * all(): GET /recipes route method that gets all Recipes in the database.
- * 
- * newRecipe(): POST /recipe/ route method that creats a new Recipe resource.
- * 
- * one(): GET /recipes/{id} route method that gets one item matching the id.
- * 
- * replaceRecipe(): PUT /repipes/{id} route method that updates a recipe with id
- *      if exists otherwise creates a new Recipe.
- * 
- * deleteRecipe(): DELETE /recipes/{id} delete a Recipe matching id.
- */
-
 package tech.zyambo.srapi;
 
 import org.springframework.http.HttpStatus;
@@ -28,10 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.qos.logback.core.joran.action.NewRuleAction;
-
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.CollectionModel;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
@@ -45,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path="/srapi/v1", produces="application/json")
 public class RecipeController {
-
+    
     private final RecipeRepository repository;
     
     private final RecipeModelAssembler assembler;
@@ -56,10 +34,14 @@ public class RecipeController {
         this.assembler = assembler;
     }
 
+    
+    /** 
+     * @return CollectionModel<EntityModel<Recipe>>
+     */
     @GetMapping("/recipes")
     @ResponseStatus(HttpStatus.OK)
     CollectionModel<EntityModel<Recipe>> all() {
-
+      
         List<EntityModel<Recipe>> recipes = repository.findAll().stream() //
             .map(assembler::toModel) //
             .collect(Collectors.toList());
@@ -67,12 +49,22 @@ public class RecipeController {
         return CollectionModel.of(recipes, linkTo(methodOn(RecipeController.class).all()).withSelfRel());
       }
 
+    
+    /** 
+     * @param newRecipe
+     * @return Recipe
+     */
     @PostMapping("/recipes")
     @ResponseStatus(HttpStatus.CREATED)
     Recipe newRecipe(@RequestBody Recipe newRecipe) {
         return repository.save(newRecipe);
     }
     
+    
+    /** 
+     * @param id
+     * @return EntityModel<Recipe>
+     */
     @GetMapping("/recipes/{id}")
     EntityModel<Recipe> one(@PathVariable Integer id) {
 
@@ -82,13 +74,19 @@ public class RecipeController {
         return assembler.toModel(recipe);
     }
 
+    
+    /** 
+     * @param newRecipe
+     * @param id
+     * @return Recipe
+     */
     @PutMapping("/recipes/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     Recipe replaceRecipe(@RequestBody Recipe newRecipe, @PathVariable Integer id) {
-        
+               
         return repository.findById(id)
         .map(Recipe -> {
-            Recipe.setName(newRecipe.getName());
+            Recipe.setRecipeName(newRecipe.getRecipeName());
             Recipe.setCreator(newRecipe.getCreator());
             Recipe.seteditedAt(newRecipe.geteditedAt());
             Recipe.setDescription(newRecipe.getDescription());
@@ -96,6 +94,10 @@ public class RecipeController {
             Recipe.setPrep(newRecipe.getPrep());
             Recipe.setCook(newRecipe.getCook());
             Recipe.setServings(newRecipe.getServings());
+            Recipe.setIngredient(newRecipe.getIngredient());
+            Recipe.setCategory(newRecipe.getCategory());
+            Recipe.setCookDirections(newRecipe.getCookDirections());
+            Recipe.setNurition(newRecipe.getnutrients());
             return repository.save(Recipe);
         })
         .orElseGet(() -> {
@@ -104,6 +106,10 @@ public class RecipeController {
         });
     }
 
+    
+    /** 
+     * @param id
+     */
     @DeleteMapping("/recipes/{id}")
     @ResponseStatus(HttpStatus.OK)
     void deleteRecipe(@PathVariable Integer id) {

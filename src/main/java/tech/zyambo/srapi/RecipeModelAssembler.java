@@ -14,6 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 class RecipeModelAssembler implements RepresentationModelAssembler<Recipe, EntityModel<Recipe>> {
 
+  
+  /** 
+   * @param recipe
+   * @return EntityModel<Recipe>
+   */
   @Override
   public EntityModel<Recipe> toModel(Recipe recipe) {
 
