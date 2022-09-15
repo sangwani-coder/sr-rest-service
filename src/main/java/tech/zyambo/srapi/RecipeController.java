@@ -88,7 +88,6 @@ public class RecipeController {
         .map(Recipe -> {
             Recipe.setRecipeName(newRecipe.getRecipeName());
             Recipe.setCreator(newRecipe.getCreator());
-            Recipe.seteditedAt(newRecipe.geteditedAt());
             Recipe.setDescription(newRecipe.getDescription());
             Recipe.setCountry(newRecipe.getCountry());
             Recipe.setPrep(newRecipe.getPrep());

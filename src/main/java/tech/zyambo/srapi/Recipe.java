@@ -2,6 +2,7 @@ package tech.zyambo.srapi;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -32,11 +33,13 @@ public class Recipe {
     private String category;
 
     // Secondary RecipeIngredients table attributes
-    @Column(table = "recipe_details")
+    @Column(table = "recipe_details", length = 300)
     // key; ingredient
     // value: quantity
     private ArrayList<String> ingredients;
-    private ArrayList<String> cookDirections;
+    @Column(length = 400)
+    private HashMap<Integer, String> cookDirections;
+    @Column(length = 300)
     private ArrayList<String> nutrients;
 
     // no-arg constructor
@@ -144,7 +147,7 @@ public class Recipe {
     /** 
      * @return ArrayList<String>
      */
-    public ArrayList<String> getCookDirections(){
+    public HashMap<Integer, String> getCookDirections(){
         return cookDirections;
     }
 
@@ -184,7 +187,7 @@ public class Recipe {
     /** 
      * @param edited
      */
-    public void seteditedAt(LocalDateTime edited){
+    public void seteditedAt(){
         this.editedAt = LocalDateTime.now();
     }
     
@@ -233,17 +236,17 @@ public class Recipe {
 
     
     /** 
-     * @param ingredient
+     * @param item
      */
-    public void setIngredient(ArrayList<String> ingredient){
-        this.ingredients = ingredient;
+    public void setIngredient(ArrayList<String> item){
+        this.ingredients = item;
     }
     
      
      /** 
       * @param step
       */
-     public void setCookDirections(ArrayList<String> step){
+     public void setCookDirections(HashMap<Integer, String> step){
         this.cookDirections = step;
     }
      
