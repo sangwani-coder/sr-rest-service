@@ -17,6 +17,11 @@
 		<java.version>18</java.version>
 	</properties>
 	<dependencies>
+		<!-- Add dependency to implement content negotiations -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>

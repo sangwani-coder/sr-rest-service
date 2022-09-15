@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/srapi/v1", produces="application/json")
+@RequestMapping("/srapi/v1")
 public class RecipeController {
     
     private final RecipeRepository repository;
