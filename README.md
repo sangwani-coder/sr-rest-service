@@ -10,8 +10,8 @@ It accepts CRUD operations.
 * **Database**: H2 Database
 
 ## Base URL
-The Base URL is the root URL for all of the API, if you ever make a request to srapi and you get back a 404 NOT FOUND response then check the Base URL first.
-The Base URL for swapi is **"srapi/v1/"**
+The Base URL is the root URL for all of the API, if you make a request to srapi and you get back a 404 NOT FOUND response then check the Base URL first.
+The Base URL for srapi is **"srapi/v1/"**
 
 ## Authenication
 No authentication is required to consume query the API.
@@ -58,134 +58,20 @@ A Recipe resource is a single meal or recipe in the database.
 * recipes/{id} -- get a single recipe
 
 **Example request**
+
 curl http://localhost:8080/srapi/v1/recipes
 
 **Example response**
 
-{
-    "_embedded": {
-        "recipeList": [
-            {
-                "id": 1,
-                "recipeName": "Stuffed Shells",
-                "description": null,
-                "createdAt": "2022-09-15T06:57:37.297684",
-                "editedAt": "2022-09-15T06:57:37.297684",
-                "creator": "Sepiso",
-                "country": null,
-                "prep": null,
-                "cook": null,
-                "servings": null,
-                "category": "Dinner",
-                "cookDirections": null,
-                "nutrients": null,
-                "ingredient": [
-                    "2 tablespoons olive oil",
-                    "garlic cloves, thinly sliced",
-                    "1//2 teaspoon salt"
-                ],
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8080/srapi/v1/recipes/1"
-                    },
-                    "recipes": {
-                        "href": "http://localhost:8080/srapi/v1/recipes"
-                    }
-                }
-            },
-            {
-                "id": 2,
-                "recipeName": "Tuscan Chicken Skillet",
-                "description": null,
-                "createdAt": "2022-09-15T06:57:37.297684",
-                "editedAt": "2022-09-15T06:57:37.297684",
-                "creator": "Sangwani",
-                "country": null,
-                "prep": null,
-                "cook": null,
-                "servings": null,
-                "category": "Lunch",
-                "cookDirections": null,
-                "nutrients": null,
-                "ingredient": null,
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8080/srapi/v1/recipes/2"
-                    },
-                    "recipes": {
-                        "href": "http://localhost:8080/srapi/v1/recipes"
-                    }
-                }
-            },
-            {
-                "id": 3,
-                "recipeName": "Easy butter chicken",
-                "description": null,
-                "createdAt": "2022-09-15T06:57:37.297684",
-                "editedAt": "2022-09-15T06:57:37.297684",
-                "creator": "Zyambo",
-                "country": null,
-                "prep": null,
-                "cook": null,
-                "servings": null,
-                "category": "Breakfast",
-                "cookDirections": {
-                    "1": "Preheat the oven to .....",
-                    "2": "Heat the sunflower oil in a medium non-stick frying pan.."
-                },
-                "nutrients": null,
-                "ingredient": [
-                    "3-4 boneless skinless chicken thighs",
-                    "6 green cardamom pods",
-                    "pinch dried fenugree leaves"
-                ],
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8080/srapi/v1/recipes/3"
-                    },
-                    "recipes": {
-                        "href": "http://localhost:8080/srapi/v1/recipes"
-                    }
-                }
-            }
-        ]
-    },
-    "_links": {
-        "self": {
-            "href": "http://localhost:8080/srapi/v1/recipes"
-        }
-    }
-}
+<img src="https://github.com/sangwani-coder/sr-rest-service/blob/main/getAll.png"></img>
 
 **Example request**
+
 curl http://localhost:8080/srapi/v1/recipes/2
 
 **Example response**
 
-{
-    "id": 2,
-    "recipeName": "Tuscan Chicken Skillet",
-    "description": null,
-    "createdAt": "2022-09-15T06:57:37.297684",
-    "editedAt": "2022-09-15T06:57:37.297684",
-    "creator": "Sangwani",
-    "country": null,
-    "prep": null,
-    "cook": null,
-    "servings": null,
-    "category": "Lunch",
-    "cookDirections": null,
-    "nutrients": null,
-    "ingredient": null,
-    "_links": {
-        "self": {
-            "href": "http://localhost:8080/srapi/v1/recipes/2"
-        },
-        "recipes": {
-            "href": "http://localhost:8080/srapi/v1/recipes"
-        }
-    }
-}
+<img src="https://github.com/sangwani-coder/sr-rest-service/blob/main/get1.png"></img>
 
 **Attributes**
 - id --_integer_ primary key
@@ -204,7 +90,7 @@ curl http://localhost:8080/srapi/v1/recipes/2
 - nutrients --_Array_ nutrition informaiton
 
 
-## Methods and Endpoints
+## HTTP Methods and Endpoints
 |No.| Method | URI             |      Description |
 |------------|-------------------|------------------|---------------|
 |1. | GET | srapi/v1/ | get all information on available resouces |
