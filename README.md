@@ -31,14 +31,12 @@ To send a POST or PUT request with the XML request body you need to add the _Con
 
 ## Resources
 ### Root
-**NOT implemented**
 The Root provides information on all available resources within the API.
 
 ### Known bugs
-- POST and PUT requests with Content-Type 'application/xml' fails with 400 Bad request error.
 - The request on the Base URL should return information on all available resources. However it returns a 404 error.
-**Example request**
 
+**Example request**
 curl http://localhost:8080/srapi/v1
 
 **Example response**
@@ -50,15 +48,144 @@ curl http://localhost:8080/srapi/v1
 }
 
 ### Recipe
+### Known bugs
+- POST and PUT requests with Content-Type 'application/xml' fails with 400 Bad request error.
 A Recipe resource is a single meal or recipe in the database.
+
 **Endpoints**
 
 * recipes/ -- get all recipe resources
 * recipes/{id} -- get a single recipe
-**Example request** 
 
+**Example request**
+curl http://localhost:8080/srapi/v1/recipes
 
-**Example response** 
+**Example response**
+
+{
+    "_embedded": {
+        "recipeList": [
+            {
+                "id": 1,
+                "recipeName": "Stuffed Shells",
+                "description": null,
+                "createdAt": "2022-09-15T06:57:37.297684",
+                "editedAt": "2022-09-15T06:57:37.297684",
+                "creator": "Sepiso",
+                "country": null,
+                "prep": null,
+                "cook": null,
+                "servings": null,
+                "category": "Dinner",
+                "cookDirections": null,
+                "nutrients": null,
+                "ingredient": [
+                    "2 tablespoons olive oil",
+                    "garlic cloves, thinly sliced",
+                    "1//2 teaspoon salt"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/srapi/v1/recipes/1"
+                    },
+                    "recipes": {
+                        "href": "http://localhost:8080/srapi/v1/recipes"
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "recipeName": "Tuscan Chicken Skillet",
+                "description": null,
+                "createdAt": "2022-09-15T06:57:37.297684",
+                "editedAt": "2022-09-15T06:57:37.297684",
+                "creator": "Sangwani",
+                "country": null,
+                "prep": null,
+                "cook": null,
+                "servings": null,
+                "category": "Lunch",
+                "cookDirections": null,
+                "nutrients": null,
+                "ingredient": null,
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/srapi/v1/recipes/2"
+                    },
+                    "recipes": {
+                        "href": "http://localhost:8080/srapi/v1/recipes"
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "recipeName": "Easy butter chicken",
+                "description": null,
+                "createdAt": "2022-09-15T06:57:37.297684",
+                "editedAt": "2022-09-15T06:57:37.297684",
+                "creator": "Zyambo",
+                "country": null,
+                "prep": null,
+                "cook": null,
+                "servings": null,
+                "category": "Breakfast",
+                "cookDirections": {
+                    "1": "Preheat the oven to .....",
+                    "2": "Heat the sunflower oil in a medium non-stick frying pan.."
+                },
+                "nutrients": null,
+                "ingredient": [
+                    "3-4 boneless skinless chicken thighs",
+                    "6 green cardamom pods",
+                    "pinch dried fenugree leaves"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/srapi/v1/recipes/3"
+                    },
+                    "recipes": {
+                        "href": "http://localhost:8080/srapi/v1/recipes"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/srapi/v1/recipes"
+        }
+    }
+}
+
+**Example request**
+curl http://localhost:8080/srapi/v1/recipes/2
+
+**Example response**
+
+{
+    "id": 2,
+    "recipeName": "Tuscan Chicken Skillet",
+    "description": null,
+    "createdAt": "2022-09-15T06:57:37.297684",
+    "editedAt": "2022-09-15T06:57:37.297684",
+    "creator": "Sangwani",
+    "country": null,
+    "prep": null,
+    "cook": null,
+    "servings": null,
+    "category": "Lunch",
+    "cookDirections": null,
+    "nutrients": null,
+    "ingredient": null,
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/srapi/v1/recipes/2"
+        },
+        "recipes": {
+            "href": "http://localhost:8080/srapi/v1/recipes"
+        }
+    }
+}
 
 **Attributes**
 - id --_integer_ primary key
