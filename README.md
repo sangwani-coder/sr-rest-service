@@ -37,6 +37,7 @@ The Root provides information on all available resources within the API.
 - The request on the Base URL should return information on all available resources. However it returns a 404 error.
 
 **Example request**
+
 curl http://localhost:8080/srapi/v1
 
 **Example response**
