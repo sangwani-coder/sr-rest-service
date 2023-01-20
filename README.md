@@ -14,7 +14,7 @@ The Base URL is the root URL for all of the API, if you ever make a request to s
 The Base URL for swapi is **"srapi/v1/"**
 
 ## Authenication
-No authentication is required to consume query the API.
+No authentication is required to consume the API.
 
 ## Content Negotiation
 When a client sends a request to the API, it can specify two HTTP Headers related to Content Negotiation
@@ -62,17 +62,17 @@ A Recipe resource is a single meal or recipe in the database.
 
 **Attributes**
 - id --_integer_ primary key
-- recipeName --_String_ the name of the recipeor meal
+- recipeName --_String_ the name of the recipe or meal
 - description -- _String_ a short description of the recipe
 - createdAt -- _LocalDateTime_ the time the resource was created
 - editedAt --_LocalDateTime_ the time the resource was updated
 - creator -- _String_ the name of the creator of the recipe
 - country --_String_ the country where the creator lives
 - prep --_String_ the time it takes to prepare the recipe
-- cook --_String_ the time it takes for the meal to coo
-- servings --_String_ the number of servings 
+- cook --_String_ the time it takes for the meal to cook
+- servings --_String_ the number of servings the dish can produce
 - category --_Stgring_ the category (breakfast, lunch, dinner)
-- ingredients --_Array_ the ingredients required
+- ingredients --_Array_ the ingredients required to make the dish
 - cookDirections --_HashMap_ the steps to prepare the meal
 - nutrients --_Array_ nutrition informaiton
 
@@ -88,4 +88,4 @@ A Recipe resource is a single meal or recipe in the database.
 |6. | DELETE | srapi/v1/ecipes{id}| delete a resource matched by id |
 
 ### Contributor(s)
-Peter Zyambo
+Peter Zyambo (Twitter)[https://twitter.com/peter_zyambo]
