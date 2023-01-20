@@ -9,5 +9,6 @@ public class SrapiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SrapiApplication.class, args);
 		System.out.println("srapi Server is running...");
+		System.out.println("Base url: /srapi/v1/");
 	}
 }
