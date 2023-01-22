@@ -9,8 +9,8 @@ The srapi REST service is a programatically accessible data source for food Reci
 * **Database**: H2 Database
 
 ## Base URL
-The Base URL is the root URL for all of the API, if you ever make a request to srapi and you get back a 404 NOT FOUND response then check the Base URL first.
-The Base URL for swapi is **"srapi/v1/"**
+The Base URL is the root URL for all of the API, if you make a request to srapi and you get back a 404 NOT FOUND response then check the Base URL first.
+The Base URL for srapi is **"srapi/v1/"**
 
 ## Authenication
 No authentication is required to consume the API.
@@ -30,12 +30,11 @@ To send a POST or PUT request with the XML request body you need to add the _Con
 
 ## Resources
 ### Root
-**NOT implemented**
 The Root provides information on all available resources within the API.
 
 ### Known bugs
-- POST and PUT requests with Content-Type 'application/xml' fails with 400 Bad request error.
 - The request on the Base URL should return information on all available resources. However it returns a 404 error.
+
 **Example request**
 
     curl http://localhost:8080/srapi/v1
@@ -49,73 +48,18 @@ The Root provides information on all available resources within the API.
     }
 
 ### Recipe
+### Known bugs
+- POST and PUT requests with Content-Type 'application/xml' fails with 400 Bad request error.
 A Recipe resource is a single meal or recipe in the database.
+
 **Endpoints**
 
 * recipes/ -- get all recipe resources
-* recipes/{id} -- get a single recipe matching id
-
-## Get Requests
+* recipes/{id} -- get a single recipe
 **Example request** 
-Don't forget to include the base URL: _srapi/v1/<end_point>_ before the endpoints.
 
-GET: 
-    curl http://localhost:8080/srapi/v1/recipes/1
 
 **Example response** 
-
-    {
-        "id":2,
-        "recipeName":"Tuscan Chicken Skillet",
-        "description":null,
-        "createdAt":"2023-01-20T14:27:05.680635",
-        "editedAt":"2023-01-20T14:27:05.680635",
-        "creator":"Sangwani",
-        "country":null,
-        "prep":null,
-        "cook":null,
-        "servings":null,
-        "category":"Lunch",
-        "cookDirections":null,
-        "nutrients":null,
-        "ingredient":null,
-        "_links":{
-            "self":{"href":"http://localhost:8080/srapi/v1/recipes/2"},
-            "recipes":{"href":"http://localhost:8080/srapi/v1/recipes"}
-            }
-    }
-
-**Example request** 
-Trying to access a recipe that does not exits raises a RecipeNotFoundError and returns a string.
-
-GET: 
-    curl http://localhost:8080/srapi/v1/recipes/5
-
-**Example reponse**
-
-    Could not find recipe with id 5
-
-## Post Request
-**Example request** 
-Trying to access a recipe that does not exits raises a RecipeNotFoundError and returns a string.
-
-GET: 
-    curl http://localhost:8080/srapi/v1/recipes/5
-
-**Example reponse**
-<!-- example response -->
-
-## Put Request
-**Example request** 
-<!-- example put request -->
-**Example reponse**
-<!-- example response -->
-
-## Delete Request
-**Example request** 
-<!-- example delete request -->
-**Example reponse**
-<!-- example response -->
 
 **Attributes**
 - id --_integer_ primary key
@@ -134,7 +78,7 @@ GET:
 - nutrients --_Array_ nutrition informaiton
 
 
-## Endpoints and Accepted Methods
+## Methods and Endpoints
 |No.| Method | URI             |      Description |
 |------------|-------------------|------------------|---------------|
 |1. | GET | srapi/v1/ | get all information on available resouces |
